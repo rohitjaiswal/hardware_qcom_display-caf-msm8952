@@ -5,8 +5,12 @@ else
     TARGET_USES_SDM = false
 endif
 
-display-hals := libgralloc libcopybit liblight libmemtrack libqservice libqdutils
+display-hals := libgralloc libcopybit libmemtrack libqservice libqdutils
 display-hals += hdmi_cec
+
+ifneq ($(TARGET_PROVIDES_LIBLIGHT),true)
+    display-hals += liblight
+endif
 
 ifeq ($(TARGET_USES_SDM), true)
     sdm-libs := sdm/libs
